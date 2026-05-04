@@ -3,42 +3,101 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#edf3ff">
     <meta name="description" content="Gorev, alisveris, not ve harcama takibi icin mobil PWA.">
     <title>HepsiVar</title>
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icons/icon.svg">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
+    <div class="scene" aria-hidden="true"></div>
+
     <div id="app" class="app-shell">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">Bugun</p>
-          <h1>HepsiVar</h1>
+      <aside class="sidebar" aria-label="Ana menu">
+        <div class="window-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-        <button id="installButton" class="icon-button hidden" type="button" aria-label="Uygulamayi yukle" title="Yukle">
-          <span aria-hidden="true">+</span>
-        </button>
-      </header>
+        <a class="brand" href="/" aria-label="HepsiVar ana sayfa">HepsiVar</a>
+        <nav class="side-nav">
+          <button class="nav-item active" type="button" data-view="tasks">
+            <span class="nav-icon">✓</span>
+            <span>Görevler</span>
+          </button>
+          <button class="nav-item" type="button" data-view="shopping">
+            <span class="nav-icon">☷</span>
+            <span>Liste</span>
+          </button>
+          <button class="nav-item" type="button" data-view="notes">
+            <span class="nav-icon">▤</span>
+            <span>Notlar</span>
+          </button>
+          <button class="nav-item" type="button" data-view="expenses">
+            <span class="nav-icon">₺</span>
+            <span>Para</span>
+          </button>
+          <button class="nav-item" type="button" data-view="calendar">
+            <span class="nav-icon">□</span>
+            <span>Takvim</span>
+          </button>
+          <button class="nav-item" type="button" data-view="settings">
+            <span class="nav-icon">⚙</span>
+            <span>Ayarlar</span>
+          </button>
+        </nav>
+        <div class="profile-card">
+          <div class="avatar">M</div>
+          <div>
+            <strong>Mehmet</strong>
+            <span>Premium Üye</span>
+          </div>
+        </div>
+      </aside>
 
-      <main class="main-view">
-        <section id="dashboard" class="dashboard" aria-label="Ozet"></section>
-        <section id="panel" class="panel" aria-live="polite"></section>
-      </main>
+      <div class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Bugün</p>
+            <h1>HepsiVar</h1>
+          </div>
+          <div class="top-actions">
+            <button id="searchButton" class="round-button" type="button" aria-label="Ara" title="Ara">
+              <span aria-hidden="true">⌕</span>
+            </button>
+            <button id="installButton" class="round-button hidden" type="button" aria-label="Uygulamayı yükle" title="Yükle">
+              <span aria-hidden="true">+</span>
+            </button>
+            <button id="notifyButton" class="round-button has-badge" type="button" aria-label="Bildirimler" title="Bildirimler">
+              <span aria-hidden="true">♢</span>
+            </button>
+          </div>
+        </header>
 
-      <nav class="tabbar" aria-label="Ana menuler">
-        <button class="tab active" type="button" data-view="tasks" aria-label="Gorevler">
+        <section id="searchPanel" class="search-panel hidden" aria-label="Arama">
+          <input id="searchInput" type="search" autocomplete="off" placeholder="Her şeyde ara">
+          <div id="searchResults" class="search-results"></div>
+        </section>
+
+        <main class="main-view">
+          <section id="dashboard" class="dashboard" aria-label="Özet"></section>
+          <section id="panel" class="panel" aria-live="polite"></section>
+        </main>
+      </div>
+
+      <nav class="tabbar" aria-label="Ana menüler">
+        <button class="tab active" type="button" data-view="tasks" aria-label="Görevler">
           <span class="tab-icon">✓</span>
-          <span>Gorev</span>
+          <span>Görev</span>
         </button>
-        <button class="tab" type="button" data-view="shopping" aria-label="Alisveris">
-          <span class="tab-icon">□</span>
+        <button class="tab" type="button" data-view="shopping" aria-label="Alışveriş">
+          <span class="tab-icon">☷</span>
           <span>Liste</span>
         </button>
         <button class="tab" type="button" data-view="notes" aria-label="Notlar">
-          <span class="tab-icon">≡</span>
+          <span class="tab-icon">▤</span>
           <span>Not</span>
         </button>
         <button class="tab" type="button" data-view="expenses" aria-label="Harcamalar">
@@ -47,13 +106,6 @@
         </button>
       </nav>
     </div>
-
-    <template id="emptyTemplate">
-      <div class="empty-state">
-        <strong></strong>
-        <p></p>
-      </div>
-    </template>
 
     <script src="/app.js" defer></script>
   </body>

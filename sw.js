@@ -1,4 +1,4 @@
-const CACHE_NAME = "hepsivar-pwa-v1";
+const CACHE_NAME = "hepsivar-pwa-v2";
 const APP_SHELL = [
   "/",
   "/index.html",
